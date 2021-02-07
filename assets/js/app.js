@@ -1,5 +1,5 @@
 function createSlug() {
-    let slugTitle = $('#slug-title').val();
+    let slugTitle = $('#title').val();
     $('#slug').val(string_to_slug(slugTitle));
 }
 
