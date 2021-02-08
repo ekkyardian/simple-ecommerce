@@ -4,21 +4,26 @@
         <div class="card">
             <div class="card-header">
                 List Category
-                <a href="<?= base_url('category/create') ?>"><button class="btn btn-sm btn-secondary" type="submit">Add new category</button></a>
+                <a href="<?= base_url('category/create') ?>">
+                    <button class="btn btn-sm btn-secondary" type="submit">Add new category</button>
+                </a>
                 <div class="float-right">
-                    <form action="" method="post">
+                    <?= form_open(base_url('category/search'), ['method' => 'POST']) ?>
                         <div class="input-group">
-                            <input id="search" class="form-control" type="text" name="search" placeholder="Search by Title">
+                            <?= form_input('keyword', $this->session->userdata('keyword'), ['class' => 'form-control',
+                                'placeholder' => 'Search by Category Name..']) ?>
                             <div class="input-group-append">
-                                <button class="btn btn-secondary btn-sm" type="submit">
+                                <button class="btn btn-info btn-sm" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
-                                <button class="btn btn-secondary btn-sm" type="submit">
-                                    <i class="fas fa-eraser"></i>
-                                </button>
+                                    <button type="button" class="btn btn-info btn-sm">
+                                        <a href="<?= base_url('category/reset') ?>">
+                                            <i class="fas fa-eraser text-white"></i>
+                                        </a>
+                                    </button>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </div>
             <div class="card-body">
@@ -39,16 +44,19 @@
                                 <td><?= $row->title ?></td>
                                 <td><?= $row->slug ?></td>
                                 <td>
-                                    <a href="#">
-                                        <button class="btn btn-sm" type="submit">
+                                    <?= form_open("category/delete/$row->id", ['method' => 'POST']) ?>
+                                    <?= form_hidden('id', $row->id) ?>
+                                    <a href="<?= base_url('category/edit/' . $row->id) ?>">
+                                        <button class="btn btn-sm" type="button">
                                             <i class="fas fa-edit text-info"></i>
                                         </button>
                                     </a>
-                                    <a href="#">
+                                    <a href="<?= base_url('category/delete/' . $row->id) ?>">
                                         <button class="btn btn-sm" type="submit" onclick="return confirm('Are you sure?')">
                                             <i class="fas fa-trash text-danger"></i>
                                         </button>
                                     </a>
+                                    <?= form_close() ?>
                                 </td>
                             </tr>
                             <?php endforeach ?>
