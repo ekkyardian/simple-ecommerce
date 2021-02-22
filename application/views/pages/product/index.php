@@ -6,20 +6,22 @@
                 List Product
                 <a href="<?= base_url('product/create') ?>"><button class="btn btn-sm btn-secondary" type="submit">Add New Product</button></a>
                 <div class="float-right">
-                    <form action="" method="post">
+                    <?= form_open(base_url('product/search'), ['method' => 'POST']) ?>
                         <div class="input-group">
-                            <input id="search" class="form-control" type="text" name="search"
-                                placeholder="Search Product by Name">
+                            <?= form_input('keyword', $this->session->userdata('keyword'), ['id' => 'keyword',
+                                'class' => 'form-control', 'placeholder' => "Search product"]) ?>
                             <div class="input-group-append">
                                 <button class="btn btn-secondary btn-sm" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
-                                <button class="btn btn-secondary btn-sm" type="submit">
-                                    <i class="fas fa-eraser"></i>
+                                <a href="<?= base_url('product/reset') ?>" class="text-white">
+                                    <button class="btn btn-secondary btn-sm" type="button">
+                                        <i class="fas fa-eraser"></i>
+                                </a>
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </div>
             <div class="card-body">

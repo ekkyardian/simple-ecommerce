@@ -179,5 +179,49 @@ class Product extends MY_Controller
 
         redirect(base_url('product'));
     }
+
+    public function search($currentPageNumber = null)
+    {
+        if (isset($_POST['keyword'])) {
+            $this->session->set_userdata(
+                'keyword', $this->input->post('keyword')
+            );
+        } else {
+            redirect(base_url('product'));
+        }
+        
+        $keyword            = $this->session->userdata('keyword');
+        $data['title']      = 'Product - Simple Ecommerce';
+        $data['content']    = $this->product->select([
+                'product.id',
+                'product.title AS product_title',
+                'product.description',
+                'product.price',
+                'product.image',
+                'product.is_available',
+                'category.title AS category_title'
+            ])
+            ->join('category')
+            ->like('product.title', $keyword)
+            ->orLike('description', $keyword)
+            ->pagination($currentPageNumber)
+            ->get();
+            
+        $data['total_rows'] = $this->product->like('product.title', $keyword)
+            ->orLike('description', $keyword)
+            ->count();
+        $data['pagination'] = $this->product->createPagination(
+            base_url('product/search'), 3, $data['total_rows']
+        );
+        $data['page']       = 'pages/product/index';
+        
+        $this->view($data);
+    }
+
+    public function reset()
+    {
+        $this->session->unset_userdata('keyword');
+        redirect(base_url('product'));
+    }
 }
 
