@@ -7,6 +7,7 @@ class Category extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        # code here
     }
 
     public function index($currentPageNumber = null)

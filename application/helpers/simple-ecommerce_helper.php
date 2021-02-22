@@ -3,7 +3,7 @@
 function getDropdownList($table, $columns)
 {
     $CI        =& get_instance();
-    $query     = $CI->db->select($columns)->form($table)->get();
+    $query     = $CI->db->select($columns)->from($table)->get();
 
     if ($query->num_rows() >= 1) {
         $optionHeader   = ['' => '- Select -'];

@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Model extends CI_Model
 {
     protected $table                = '';
-    protected $maxContentPerPage    = 10;
+    protected $maxContentPerPage    = 5;
 
     public function __construct()
     {
@@ -68,9 +68,11 @@ class MY_Model extends CI_Model
     public function join($tableTarget, $joinType = 'left')
     {
         $this->db->join(
-            $tableTarget, "$this->table.id_$tableTarget = $tableTarget.id,
-            $joinType"
+            $tableTarget, "$this->table.id_$tableTarget = $tableTarget.id",
+            $joinType
         );
+        
+        return $this;
     }
 
     public function order($column, $orderType)
