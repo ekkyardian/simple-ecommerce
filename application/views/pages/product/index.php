@@ -43,7 +43,7 @@
                             <td><?= $no ?></td>
                                 <td>
                                 <img src="<?= $row->image ? base_url("assets/images/products/$row->image") :
-                                base_url('assets/images/products/default-product-umage.jpg') ?>"
+                                base_url('assets/images/product/default-image-product') ?>"
                                     alt="Product Image" height="50"> <?= $row->product_title ?>
                                 </td>
                                 <td><span class="badge badge-primary"><i class="fas fa-tags"></i> <?= $row->category_title ?></span></td>
