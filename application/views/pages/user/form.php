@@ -67,12 +67,12 @@
                         </small>
                         <?php endif ?>
                         <?php if (isset($input->image)) : ?>
-                            <img src="<?= base_url("./assets/images/products/$input->image") ?>"
+                            <img src="<?= base_url("./assets/images/avatar/$input->image") ?>"
                             alt="Product Image" height="100">
                         <?php endif ?>
                     </div>
                     <button class="btn btn-primary" type="submit">Save</button>
-                    <a href="<?= base_url('product') ?>">
+                    <a href="<?= base_url('user') ?>">
                         <button class="btn btn-secondary" type="button">Back to list</button>
                     </a>
                 <?= form_close() ?>

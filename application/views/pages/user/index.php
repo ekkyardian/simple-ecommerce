@@ -49,8 +49,8 @@
                                 <td><?= $row->role ?></td>
                                 <td><?= $row->is_active ? "Active" : "Non Active" ?></td>
                                 <td>
-                                    <a href="#">
-                                        <button class="btn btn-sm" type="submit">
+                                    <a href="<?= base_url("user/edit/$row->id") ?>">
+                                        <button class="btn btn-sm" type="button">
                                         <i class="fas fa-edit text-info"></i>
                                         </button>
                                     </a>
