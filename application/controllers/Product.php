@@ -7,7 +7,15 @@ class Product extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        # code here
+
+        $role = $this->session->userdata('role');
+        if ($role != 'admin') {
+            $this->session->set_flashdata(
+                'warning', 'You have no permission'
+            );
+            redirect(base_url());
+            return;
+        }
     }
 
     public function index($currentPageNumber = null)

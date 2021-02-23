@@ -11,7 +11,7 @@
                     <?= form_open(base_url('user/search'), ['method' => 'POST']) ?>
                         <div class="input-group">
                             <?= form_input('keyword', $this->session->userdata('keyword'), ['class' => 'form-control',
-                                'placeholder' => 'Search by Name']) ?>
+                                'placeholder' => 'Name or e-mail']) ?>
                             <div class="input-group-append">
                                 <button class="btn btn-secondary btn-sm" type="submit">
                                     <i class="fas fa-search"></i>

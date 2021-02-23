@@ -8,8 +8,11 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="nav-link" href="<?= base_url() ?>">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<?= base_url() ?>">Home<span class="sr-only">(current)</span></a>
                     </li>
+                    <?php
+                    $role = $this->session->userdata('role');
+                    if ($role == 'admin') { ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-manage" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Manage</a>
@@ -20,6 +23,11 @@
                         <a href="<?= base_url('user') ?>" class="dropdown-item">User</a>
                         </div>
                     </li>
+                    <?php } else { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url('order') ?>">Order<span class="sr-only">(current)</span></a>
+                    </li>
+                    <?php } ?>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">

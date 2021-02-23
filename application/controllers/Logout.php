@@ -11,7 +11,9 @@ class Logout extends MY_Controller
         ];
 
         $this->session->unset_userdata($sess_data);
-        $this->session->sess_destroy();
+        $this->session->set_flashdata(
+            'success', 'You are logout'
+        );
         redirect(base_url());
     }
 }

@@ -16,11 +16,11 @@
                                 <button class="btn btn-info btn-sm" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
-                                    <button type="button" class="btn btn-info btn-sm">
-                                        <a href="<?= base_url('category/reset') ?>">
-                                            <i class="fas fa-eraser text-white"></i>
-                                        </a>
-                                    </button>
+                                <button type="button" class="btn btn-info btn-sm">
+                                    <a href="<?= base_url('category/reset') ?>">
+                                        <i class="fas fa-eraser text-white"></i>
+                                    </a>
+                                </button>
                             </div>
                         </div>
                     <?= form_close() ?>

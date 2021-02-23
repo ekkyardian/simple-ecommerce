@@ -7,7 +7,15 @@ class User extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        # code here
+
+        $role = $this->session->userdata('role');
+        if ($role != 'admin') {
+            $this->session->set_flashdata(
+                'warning', 'You have no permission'
+            );
+            redirect(base_url());
+            return;
+        }
     }
 
     public function index($page = null)
@@ -172,9 +180,12 @@ class User extends MY_Controller
         $keyword            = $this->session->userdata('keyword');
         $data['title']      = 'Manage User - Simple Ecommerce';
         $data['content']    = $this->user->like('name', $keyword)
+                                         ->orLike('email', $keyword)
                                          ->pagination($currentPageNumber)
                                          ->get();
-        $data['total_rows'] = $this->user->like('name', $keyword)->count();
+        $data['total_rows'] = $this->user->like('name', $keyword)
+                                         ->orLike('email', $keyword)
+                                         ->count();
         $data['pagination'] = $this->user->createPagination(
             base_url('user/search'), 3, $data['total_rows']
         );
