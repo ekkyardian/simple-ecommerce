@@ -134,6 +134,31 @@ class User extends MY_Controller
         redirect(base_url('user'));
     }
 
+    public function delete($id)
+    {
+        if (!$_POST) {
+            redirect(base_url('user'));
+        }
+
+        if (!$this->user->where('id', $id)->first()) {
+            $this->session->set_flashdata(
+                'error', 'Data not found'
+            );
+        }
+
+        if ($this->user->where('id', $id)->delete()) {
+            $this->session->set_flashdata(
+                'success', 'Data has been deleted'
+            );
+        } else {
+            $this->session->set_flashdata(
+                'error', 'Something wrong happens'
+            );
+        }
+
+        redirect(base_url('user'));
+    }
+
     public function unique_email()
     {
         $email   = $this->input->post('email');
