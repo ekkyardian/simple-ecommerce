@@ -8,19 +8,22 @@
                     <button class="btn btn-sm btn-secondary" type="button">Add new user</button>
                 </a>
                 <div class="float-right">
-                    <form action="" method="post">
+                    <?= form_open(base_url('user/search'), ['method' => 'POST']) ?>
                         <div class="input-group">
-                            <input id="search" class="form-control" type="text" name="search" placeholder="Search by Name">
+                            <?= form_input('keyword', $this->session->userdata('keyword'), ['class' => 'form-control',
+                                'placeholder' => 'Search by Name']) ?>
                             <div class="input-group-append">
                                 <button class="btn btn-secondary btn-sm" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
-                                <button class="btn btn-secondary btn-sm" type="submit">
-                                    <i class="fas fa-eraser"></i>
+                                <button class="btn btn-secondary btn-sm" type="button">
+                                    <a href="<?= base_url('user/reset') ?>">
+                                        <i class="fas fa-eraser text-white"></i>
+                                    </a>
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    <?= form_close() ?>
                 </div>
             </div>
             <div class="card-body">

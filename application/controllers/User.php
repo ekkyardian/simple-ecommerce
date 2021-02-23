@@ -159,6 +159,36 @@ class User extends MY_Controller
         redirect(base_url('user'));
     }
 
+    public function search($currentPageNumber = null)
+    {
+        if (isset($_POST['keyword'])) {
+            $this->session->set_userdata(
+                'keyword', $this->input->post('keyword')
+            );
+        } else {
+            redirect(base_url('user'));
+        }
+
+        $keyword            = $this->session->userdata('keyword');
+        $data['title']      = 'Manage User - Simple Ecommerce';
+        $data['content']    = $this->user->like('name', $keyword)
+                                         ->pagination($currentPageNumber)
+                                         ->get();
+        $data['total_rows'] = $this->user->like('name', $keyword)->count();
+        $data['pagination'] = $this->user->createPagination(
+            base_url('user/search'), 3, $data['total_rows']
+        );
+        $data['page']       = 'pages/user/index';
+
+        $this->view($data);
+    }
+
+    public function reset()
+    {
+        $this->session->unset_userdata('keyword');
+        redirect(base_url('user'));
+    }
+
     public function unique_email()
     {
         $email   = $this->input->post('email');

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/libs/fontawesome/css/all.min.css">
 
     <!-- Favicons -->
-    <!-- TODO: Coming soon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/system/favicon-16x16.png') ?>" type="image/x-icon">
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/app.css">
