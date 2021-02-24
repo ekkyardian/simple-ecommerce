@@ -47,8 +47,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-user-info" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><?= $this->session->userdata('name') ?></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-user-info">
-                            <a href="index.php?p=profile" class="dropdown-item">Profile</a>
-                            <a href="index.php?p=order" class="dropdown-item">Order</a>
+                            <a href="<?= base_url('profile') ?>" class="dropdown-item">Profile</a>
+                            <a href="<?= base_url('order') ?>" class="dropdown-item">Order</a>
                             <a href="<?= base_url('/logout') ?>" class="dropdown-item">Logout</a>
                         </div>
                     </li>
