@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-header">Profile</div>
             <div class="card-body">
-                <?= form_open(base_url("profile/edit/$input->id"), ['method' => 'POST']) ?>
+                <?= form_open_multipart(base_url("profile/edit/$input->id"), ['method' => 'POST']) ?>
                     <?= form_hidden('id', $input->id) ?>
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -34,6 +34,19 @@
                         <?= form_password('password_confirmation', '', ['class' => 'form-control',
                             'id' => 'password_confirmation']) ?>
                         <?= form_error('password_confirmation') ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">User Image</label>
+                        <?= form_upload('image') ?>
+                        <?php if ($this->session->flashdata('image_error')) : ?>
+                        <small class="form-text text-danger">
+                            <?= $this->session->flashdata('image_error') ?>
+                        </small>
+                        <?php endif ?>
+                        <?php if (isset($input->image)) : ?>
+                            <img src="<?= base_url("./assets/images/avatar/$input->image") ?>"
+                            alt="Product Image" height="100">
+                        <?php endif ?>
                     </div>
                     <button class="btn btn-primary" type="submit" name="update">Update</button>
                 <?= form_close() ?>

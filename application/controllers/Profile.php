@@ -68,6 +68,22 @@ class Profile extends MY_Controller
             }
         }
         
+        if (!empty($_FILES) && $_FILES['image'] != '') {
+            $imageName = url_title($data['input']->name, '-', true) . '-' .
+                date('YmdHis');
+            $upload = $this->profile->uploadImage('image', $imageName);
+
+            if ($upload) {
+                if ($data['content']->image != '') {
+                    $this->profile->deleteImage($data['content']->image);
+                }
+
+                $data['input']->image = $upload['file_name'];
+            } else {
+                redirect(base_url("profile/edit/$id"));
+            }
+        }
+
         if (!$this->profile->validate()) {
             $data['title']          = 'Edit Profile - Simple Ecommerce';
             $data['form_action']    = base_url("profile/edit/$id");
