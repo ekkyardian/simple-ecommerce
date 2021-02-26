@@ -75,9 +75,9 @@ class MY_Model extends CI_Model
         return $this;
     }
 
-    public function order($column, $orderType)
+    public function orderBy($column, $orderType = 'asc')
     {
-        $this->db->order($column, $orderType);
+        $this->db->order_by($column, $orderType);
         return $this;
     }
 
