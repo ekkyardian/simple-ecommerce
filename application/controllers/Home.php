@@ -8,9 +8,10 @@ class Home extends MY_Controller
     {
         $data['title']      = 'Home - Simple Ecommerce';
         $data['content']    = $this->home->select([
-            'product.id', 'product.slug', 'product.title AS product_title',
-            'product.description', 'product.price', 'product.image',
-            'product.is_available', 'category.title AS category_title'
+            'product.id', 'product.slug AS product_slug',
+            'product.title AS product_title', 'product.description',
+            'product.price', 'product.image', 'product.is_available',
+            'category.title AS category_title', 'category.slug AS category_slug'
         ])
         ->join('category')
         ->where('product.is_available', 1)

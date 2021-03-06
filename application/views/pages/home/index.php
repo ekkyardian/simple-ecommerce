@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="card mb-3">
                     <div class="card-body">
-                        Category: <strong>All</strong>
+                        Category: <strong><?= isset($category) ? $category : 'All' ?></strong>
                         <span class="float-right">
                             Order by:
                             <a href="<?= base_url('shop/orderby/asc') ?>" class="badge badge-success">Low Price</a>
@@ -15,6 +15,29 @@
                 </div>
             </div>
         </div>
+
+        <?php
+        $keyword = $this->session->userdata('keyword');
+        if ($keyword != '') {
+        ?>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class='alert alert-info pb-3'>
+                    Hasil pencarian untuk: <strong><?= $keyword ?></strong>
+                    <span class="float-right">
+                        <a href="<?= base_url('shop/reset') ?>" class="text-white" style="text-decoration: none;">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fas fa-trash-alt"></i> Clear
+                            </button>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <?php } ?>
+
         <div class="row">
             <?php foreach($content as $row) : ?>
             <div class="col-md-6 mb-3">
@@ -26,7 +49,7 @@
                         <h5 class="card-title"><?= $row->product_title ?></h5>
                         <p class="card-text"><strong>Rp<?= number_format($row->price, 0, ',', '.') ?></strong></p>
                         <p class="card-text"><?= $row->description ?></p>
-                        <a href="#" class="badge badge-primary"><i class="fas fa-tags">
+                        <a href="<?= base_url("shop/category/$row->category_slug") ?>" class="badge badge-primary"><i class="fas fa-tags">
                             </i> <?= $row->category_title ?>
                         </a>
                     </div>
@@ -58,14 +81,17 @@
                 <div class="card mb-3">
                     <div class="card-header">Search</div>
                     <div class="card-body">
-                        <form action="" method="get">
+                        <?= form_open('shop/search', ['method' => 'POST']) ?>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" id="search">
+                                <?= form_input('keyword', $this->session->userdata('keyword'), ['id' => 'keyword',
+                                    'class' => 'form-control', 'placeholder' => 'Searh product..']) ?>
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary">Go</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
-                        </form>
+                        <?= form_close() ?>
                     </div>
                 </div>
             </div>
@@ -75,9 +101,14 @@
                 <div class="card mb-3">
                     <div class="card-header">Filter by Category</div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">All</li>
-                        <li class="list-group-item">Category 1</li>
-                        <li class="list-group-item">Category 2</li>
+                        <li class="list-group-item"><a href="<?= base_url() ?>">All</a></li>
+                        <?php foreach(getCategories() as $category) : ?>
+                        <li class="list-group-item">
+                            <a href="<?= base_url("shop/category/$category->slug") ?>">
+                                <?= $category->title ?>
+                            </a>
+                        </li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
             </div>
