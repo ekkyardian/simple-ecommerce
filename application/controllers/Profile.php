@@ -45,7 +45,7 @@ class Profile extends MY_Controller
             $input = (object) $this->input->post(null, true);
 
             $data['input']              = new StdClass;
-            $data['input']->id          = 5;
+            $data['input']->id          = $id;
             $data['input']->name        = $input->name;
             $data['input']->email       = $input->email;
 
