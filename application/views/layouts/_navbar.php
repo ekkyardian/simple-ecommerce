@@ -31,8 +31,9 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="index.php?p=cart" class="nav-link">
-                            <i class="fas fa-shopping-cart"></i> Cart 0
+                        <a href="<?= base_url('cart') ?>" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i> Cart 
+                            <span class="badge badge-primary"><?= getCart(); ?></span>
                         </a>
                     </li>
                     <?php if (!$this->session->userdata('is_login')) :?>

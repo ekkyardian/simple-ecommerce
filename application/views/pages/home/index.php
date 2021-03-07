@@ -49,19 +49,21 @@
                         <h5 class="card-title"><?= $row->product_title ?></h5>
                         <p class="card-text"><strong>Rp<?= number_format($row->price, 0, ',', '.') ?></strong></p>
                         <p class="card-text"><?= $row->description ?></p>
-                        <a href="<?= base_url("shop/category/$row->category_slug") ?>" class="badge badge-primary"><i class="fas fa-tags">
-                            </i> <?= $row->category_title ?>
+                        <a href="<?= base_url("shop/category/$row->category_slug") ?>" class="badge badge-primary">
+                            <i class="fas fa-tags"></i> <?= $row->category_title ?>
                         </a>
                     </div>
                     <div class="card-footer">
-                        <form action="" method="post">
+                        <?= form_open(base_url('cart/add')) ?>
                             <div class="input-group">
-                                <input type="number" name="quantity" id="quantity" class="form-control">
+                                <?= form_hidden('id_product', $row->id) ?>
+                                <?= form_input(['type' => 'number', 'class' => 'form-control', 'name' => 'qty',
+                                    'id' => 'qty', 'value' => '1']) ?>
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary">Add to card</button>
                                 </div>
                             </div>
-                        </form>
+                        <?= form_close() ?>
                     </div>
                 </div>
             </div>
