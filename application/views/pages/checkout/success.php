@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-header">Checkout Success</div>
             <div class="card-body">
-                <h5>Nomor Order: <?= $content->invoice ?></h5>
+                <h5>Nomor Order: #<?= $content->invoice ?></h5>
                 <p>Terima kasih, sudah berbelanja</p>
                 <p>Silakan melakukan pembayaran agar bisa kami proses dengan cara:</p>
                 <ol>
@@ -15,7 +15,7 @@
                     </li>
                 </ol>
                 <p>Jika sudah, silakan kirimkan bukti transfer di halaman 
-                    <a href="#">konfirmasi pembayaran</a>
+                    <a href="<?= base_url("myorders/detail/$content->invoice") ?>">konfirmasi pembayaran</a>
                 </p>
             </div>
             <div class="card-footer">

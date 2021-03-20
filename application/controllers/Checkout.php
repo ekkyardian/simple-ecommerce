@@ -73,7 +73,7 @@ class Checkout extends MY_Controller
         $ordersDetail = [
             'id_user'   => $this->id,
             'date'      => date('Y-m-d'),
-            'invoice'   => '#' . $this->id . date('YmdHis'),
+            'invoice'   => $this->id . date('YmdHis'),
             'total'     => $total,
             'name'      => $input->name,
             'address'   => $input->address,

@@ -9,6 +9,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Order ID</th>
                         <th>Date</th>
                         <th>Total</th>
@@ -16,12 +17,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no=1; foreach($content as $row) : $no++ ?>
+                    <?php $no=0; foreach($content as $row) : $no++ ?>
                     <tr>
-                        <td><a href="index.php?p=orders-detail"><?= $row->invoice ?></a></td>
-                        <td><?= $row->date ?></td>
+                        <td><?= $no ?></td>
+                        <td><a href="<?= base_url("myorders/detail/$row->invoice") ?>"><?= $row->invoice ?></a></td>
+                        <td><?= str_replace('-', '/', date('d-m-Y', strtotime($row->date))) ?></td>
                         <td>Rp<?= number_format($row->total, 0, ',', '.') ?></td>
-                        <td><span class="badge badge-pill badge-warning"><?= $row->status ?></span></td>
+                        <td><?php $this->load->view('layouts/_status', ['status' => $row->status]) ?></td>
                     </tr>
                     <?php endforeach ?>
                  </tbody>
