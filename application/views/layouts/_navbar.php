@@ -19,13 +19,13 @@
                         <div class="dropdown-menu" aria-labelledby="dropdown-manage">
                         <a href="<?= base_url('category') ?>" class="dropdown-item">Category</a>
                         <a href="<?= base_url('product') ?>" class="dropdown-item">Product</a>
-                        <a href="<?= base_url('order') ?>" class="dropdown-item">Order</a>
+                        <a href="<?= base_url('myorders') ?>" class="dropdown-item">Order</a>
                         <a href="<?= base_url('user') ?>" class="dropdown-item">User</a>
                         </div>
                     </li>
                     <?php } else { ?>
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= base_url('order') ?>">Order<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<?= base_url('myorders') ?>">Order<span class="sr-only">(current)</span></a>
                     </li>
                     <?php } ?>
                 </ul>
@@ -49,7 +49,7 @@
                         aria-haspopup="true" aria-expanded="false"><?= $this->session->userdata('name') ?></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-user-info">
                             <a href="<?= base_url('profile') ?>" class="dropdown-item">Profile</a>
-                            <a href="<?= base_url('order') ?>" class="dropdown-item">Order</a>
+                            <a href="<?= base_url('myorders') ?>" class="dropdown-item">Order</a>
                             <a href="<?= base_url('/logout') ?>" class="dropdown-item">Logout</a>
                         </div>
                     </li>
