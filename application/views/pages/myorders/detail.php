@@ -68,12 +68,53 @@
                     </tfoot>
                 </table>
             </div>
+            <?php if ($orders->status == 'waiting') : ?>
             <div class="card-footer">
-                <a href="index.php?p=payment-confirmation">
+                <a href="<?= base_url("myorders/paymentConfirmation/$orders->invoice") ?>">
                     <button class="btn btn-success" type="submit">Confirmation Payment</button>
                 </a>
             </div>
+            <?php endif ?>
         </div>
+
+        <?php if (isset($orders_confirm)) : ?>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Bukti Transfer</div>
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <td width="200px">Bank Account Name</td>
+                                <td>:</td>
+                                <td><?= $orders_confirm->account_name ?></td>
+                            </tr>
+                            <tr>
+                                <td>Bank Account Number</td>
+                                <td>:</td>
+                                <td><?= $orders_confirm->account_number ?></td>
+                            </tr>
+                            <tr>
+                                <td>Nominal</td>
+                                <td>:</td>
+                                <td>Rp<?= number_format($orders_confirm->nominal, 0, ',', '.') ?></td>
+                            </tr>
+                            <tr>
+                                <td>Note</td>
+                                <td>:</td>
+                                <td><?= $orders_confirm->note ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="<?= base_url("assets/images/transfer_receipt/$orders_confirm->image") ?>"
+                height="200px" alt="Bukti transfer">
+            </div>
+        </div>
+        <?php endif ?>
+
     </div>
 
 </div>

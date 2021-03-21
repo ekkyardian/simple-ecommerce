@@ -19,7 +19,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdown-manage">
                         <a href="<?= base_url('category') ?>" class="dropdown-item">Category</a>
                         <a href="<?= base_url('product') ?>" class="dropdown-item">Product</a>
-                        <a href="<?= base_url('myorders') ?>" class="dropdown-item">Order</a>
+                        <a href="<?= base_url('orders') ?>" class="dropdown-item">Order</a>
                         <a href="<?= base_url('user') ?>" class="dropdown-item">User</a>
                         </div>
                     </li>
