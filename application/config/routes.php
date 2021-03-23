@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 // My Custom Route
 $route['category/(:num)']   = 'category/index/$1';
 $route['product/(:num)']    = 'product/index/$1';
+$route['orders/(:num)']     = 'orders/index/$1';
 $route['user/(:num)']       = 'user/index/$1';
 $route['home/(:num)']       = 'home/index/$1';
 

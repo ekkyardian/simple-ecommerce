@@ -43,7 +43,7 @@ class Myorders extends MY_Controller
                                                 ->first();
         if (!$data['orders']) {
             $this->session->set_flashdata(
-                'warning', 'Data not found'
+                'error', 'Data not found'
             );
 
             redirect(base_url('myorders'));
